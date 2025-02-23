@@ -1,0 +1,31 @@
+﻿@using URLshortener.Models.Account
+@model RegisterViewModel //URLshortener.Views.Account._LoginModel
+
+<div class="text-center">
+    <form asp-action="Register" asp-controller="Account">
+        <!-- Login input -->
+        <div data-mdb-input-init class="form-outline mb-4">
+            <input asp-for="Login" type="text" class="form-control" placeholder="Введите Логин" />
+            <label asp-for="Login" class="form-label">Логин</label>
+        </div>
+        <span class="text-danger" asp-validation-for="Login"></span>
+
+        <!-- Password input -->
+        <div data-mdb-input-init class="form-outline mb-4">
+            <input asp-for="Password" type="password" class="form-control" placeholder="Введите Пароль" value="@Model?.Password" />
+            <label asp-for="Password" class="form-label">Пароль</label>
+        </div>
+        <span class="text-danger" asp-validation-for="Password"></span>
+
+        <!-- Repeat Password input -->
+        <div data-mdb-input-init class="form-outline mb-4">
+            <input asp-for="RepeatPassword" type="password" class="form-control" placeholder="Повторите Пароль" value="@Model?.RepeatPassword" />
+            <label asp-for="RepeatPassword" class="form-label">Повторите Пароль</label>
+        </div>
+        <span class="text-danger" asp-validation-for="RepeatPassword"></span>
+
+        <!-- Submit button -->
+        <div class="text-danger mb-2">@ViewBag.RegisterError</div>
+        <button type="submit" class="btn btn-primary btn-block mb-4">Зарегистрироваться</button>
+    </form>
+</div>

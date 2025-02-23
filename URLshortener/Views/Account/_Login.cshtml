@@ -1,0 +1,28 @@
+﻿@using URLshortener.Models.Account
+@model LoginViewModel 
+
+<div class="text-center">
+    <form asp-action="Login" asp-controller="Account">
+        <!-- Login input -->
+        <div data-mdb-input-init class="form-outline mb-4">
+            <input asp-for="Login" type="text" class="form-control" placeholder="Введите Логин"/>
+            <label asp-for="Login" class="form-label">Логин</label>
+        </div>
+        <span class="text-danger" asp-validation-for="Login"></span>
+
+        <!-- Password input -->
+        <div data-mdb-input-init class="form-outline mb-4">
+            <!-- <input type="password" id="form2Example2" class="form-control" />-->
+            <!--<label class="form-label" for="form2Example2">Пароль</label>-->
+
+            <input asp-for="Password" type="password" class="form-control" placeholder="Введите Пароль" value="@Model?.Password"/>
+            <label asp-for="Password" class="form-label">Пароль</label>
+        </div>
+        <span class="text-danger" asp-validation-for="Password"></span>
+
+        <!-- Submit button -->
+        <div class="text-danger mb-2">@ViewBag.Error</div>
+        <!--<button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">Войти</button>-->
+        <button type="submit" class="btn btn-primary btn-block mb-4">Войти</button>
+    </form>
+</div>

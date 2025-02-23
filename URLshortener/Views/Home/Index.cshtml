@@ -1,0 +1,51 @@
+﻿@using URLshortener.Domain.Entities
+@using URLshortener.Models.Home
+@model HomeViewModel
+@{
+    
+}
+
+<div class="text-center">
+    <h1 class="display-4">Сокращатель ссылок</h1>
+
+    <h1>Введите сюда ссылку для сокращения</h1>
+    <form asp-action="Create" method="post">
+        <div class="input-group">
+            <input asp-for="LongURL" type="text" class="form-control" placeholder="https://example.org">
+            <span asp-validation-for="LongURL" class="text-danger"></span>
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-primary">Сократить</button>
+            </span>
+        </div>
+    </form>
+
+    @*Подгрузка ссылок пользователя*@
+
+    @if (((List<UrlEntry>)Model.UrlEntries).Any()) @*Если есть хотя бы одна ссылка*@
+    {
+        <h1 class="mb-3">Последние сокращённые ссылки</h1>
+        <table class="table">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">Оригинальная ссылка</th>
+                    <th scope="col">Сокращённая ссылка</th>
+                    <th scope="col">Дата создания</th>
+                    <th scope="col">Количество переходов</th>
+                </tr>
+            </thead>
+            <tbody>
+                    @foreach (var urlEntry in @Model.UrlEntries)
+                {
+                    <tr>
+                        <td><a href="@urlEntry.LongURL">@urlEntry.LongURL</a></td>
+                        <td><a href="@ViewData["Site"]@urlEntry.ShortURL">@ViewData["Site"]@urlEntry.ShortURL</a></td>
+                        <td>@urlEntry.CreationDate</td>
+                        <td>@urlEntry.Clicks</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    
+
+</div>
